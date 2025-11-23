@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="Header"> <h1 class="heade-title">anytalk </h1></div>
+
+    <div class="form-box">
+        <form class="form" [formGroup]="signupForm">
+            <span class="title">Sign up</span>
+            <span class="subtitle">Create a free account with your email.</span>
+            <div class="form-container">
+                <input type="email" class="input" placeholder="Email" formControlName="email">
+                <input type="password" class="input" placeholder="Password" formControlName="password">
+            </div>
+
+            <button class="form-btn" (click)="register(signupForm.value.email, signupForm.value.password)">Sign up</button>
+        </form>
+        <div class="form-section">
+            <p>Have an account? <a [routerLink]="['/Sign-in']" routerLinkActive="router-link-active">Log in</a> </p>
+        </div>
+    </div>
+    <div class="footer"> © 2025 anytalk  Ltd. All trademarks used on this website belong to me and no one else.
+
+</div>
+</div>
+ 

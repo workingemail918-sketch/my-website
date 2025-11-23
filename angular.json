@@ -25,23 +25,13 @@
               }
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ]
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
-              ],
+              
               "outputHashing": "all"
             },
             "development": {
@@ -88,5 +78,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

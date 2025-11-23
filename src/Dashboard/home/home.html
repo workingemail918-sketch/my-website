@@ -1,0 +1,64 @@
+<div class="container">
+    @if (isinputyourname) {
+    <div class="overlay">
+        <div class="name-input">
+            <div>
+                <label for="" class="your">Your Display-name:</label>
+                <input type="text" placeholder="Enter your name" class="input" [(ngModel)]="user.name">
+            </div>
+            <button class="submit-btn" (click)="displayname()" [disabled]="user.name === ''">Submit</button>
+        </div>
+
+    </div>
+    }
+    @if(iscommment){
+    <div class="overlay">
+        <div class="name-inputt">
+            <div class="nameand">
+                <label for="" class="your">Tell Your Story:</label>
+                <textarea name="comments" rows="5" cols="40" placeholder="Enter your comments here" class="input"
+                    style="height: 400px;" [(ngModel)]="user.story"></textarea>
+            </div>
+            <button class="submit-btn" (click)="postt(user)">Post</button>
+        </div>
+
+    </div>
+    }
+    <div class="content">
+        <div class="top"> <button (click)="signOut()" class="signout">Signout</button>
+            <div style="display: flex; align-items: center;">
+                <p class="welcome">Welcome, {{ user.name }}</p>
+                @if (user.displayphotoURL) {
+                <img [src]="user.displayphotoURL" alt="User Photo">}
+            </div>
+        </div>
+        <div>
+            <h1 class="intro">Whats on Your mind.....</h1>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+            <div class="comment-contain" *ngIf="firestuff$ | async as users">
+             
+                <div class="comments"  *ngFor="let User of users">
+                    <div style="display:flex;justify-content: end;">
+                     @if (User.uid === user.uid) {
+                    <button class="close" (click)="delete(User.id)">X</button>
+                    }</div>
+                    <h3 style="margin-bottom: 0;">postedby:<span style="color: teal;">{{User?.name |titlecase}}</span></h3>
+                    <small>dateCreated:{{User?.createdat.toDate() | date:'short'}}</small>
+                    <p class="comment-text">{{User?.story}}</p>
+                   
+                </div>
+             
+
+            </div>
+        </div>
+
+    </div>
+    @if (!iscommment) {
+        <button class="add-btn" (click)="iscomment()"> + </button> 
+    }
+    @else {
+        <button class="x-btn" (click)="iscomment()"> x </button> 
+    }
+    
+</div>
